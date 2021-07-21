@@ -5,6 +5,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
 
+:root{
+  --brand-blue:#27AAE1;
+  --brand-black:#07070D;
+}
+
+
 html {font-size: 100%;} /*16px*/
 body{
   font-size: 16px;
@@ -19,8 +25,15 @@ body{
   width:100vw;
   height:100vh;
 
+  &__content{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+  }
   &__img{
-    display:block;
+    margin:auto;
+    padding-bottom: 1rem;
   }
 
 }
@@ -34,6 +47,7 @@ body{
   margin:0 auto;
   color:#fff;
   position: relative;
+  background-color:var(--brand-blue);
   background-repeat: no-repeat;
   background-size:cover;
   display: grid;

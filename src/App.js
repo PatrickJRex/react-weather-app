@@ -13,9 +13,10 @@ import Details from './components/details';
 import loadingImage from './assets/download.png';
 
 const api = {
-  key:"ddbff12b3b4682abfc8600930d5f588a",
+  key:process.env.REACT_APP_WEATHER_API_KEY,
   base:"https://api.openweathermap.org/data/2.5/"
 }
+
 
   const appBackground = {
     backgroundImage: 'url(https://source.unsplash.com/1600x900/?weather,clear)'
@@ -137,8 +138,10 @@ const api = {
       if(!this.state.isLoaded){
         return (
           <div className="App-Loading-State">
-            <img src={loadingImage} className="App-Loading-State__img" alt="loading state"/>
-            <h4>Loading...</h4>
+           <div className="App-Loading-State__content">
+           <img src={loadingImage} className="App-Loading-State__img" alt="loading state"/>
+            <p>Loading...</p>
+           </div>
           </div>
         );
         
