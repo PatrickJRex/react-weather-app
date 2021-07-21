@@ -131,7 +131,7 @@ const api = {
 
 
     render() {
-      const { current, daily, today, hourlyForecast,currentWeather, isLoaded } = this.state;
+      const { current, daily, today, hourlyForecast,currentWeather } = this.state;
  
 
       if(!this.state.isLoaded){
