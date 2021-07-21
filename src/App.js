@@ -1,0 +1,162 @@
+import React, {Component} from 'react';
+import './assets/weather-icons.min.css';
+import './App.scss';
+
+// get parts
+import Header from './components/header';
+import TodaysForecast from './components/todaysForecast';
+import TenDayForecast from './components/TenDayForecast';
+import CurrentDescription from './components/currentDescription';
+import Details from './components/details';
+
+// get image
+import loadingImage from './assets/download.png';
+
+const api = {
+  key:"ddbff12b3b4682abfc8600930d5f588a",
+  base:"https://api.openweathermap.org/data/2.5/"
+}
+
+  const appBackground = {
+    backgroundImage: 'url(https://source.unsplash.com/1600x900/?weather,clear)'
+  }
+
+
+  class App extends Component {
+    constructor(props){
+     super(props);
+      
+     this.state = {
+      error:null,
+      isLoaded:false,
+      weather:[],
+      main:[],
+      city:[],
+      hourlyForecast:[],
+      lat:null,
+      lng:null,
+      current:[],
+      currentWeather:[],
+      daily:[]
+    }
+
+    }
+
+    getWeatherByLocation = () => {
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(
+          (pos) =>{
+            this.setState({
+              lat:pos.coords.latitude,
+              lng:pos.coords.longitude
+            })
+            this.fetchWeatherData(this.state.lat,this.state.lng);
+          },
+         (err)=>{
+           console.log(err)
+         }
+        );
+      }
+    }
+
+    init(){
+    this.getWeatherByLocation();
+  
+    if(!localStorage.getItem('localWeatherData')){
+      this.getWeatherByLocation();
+
+    } else {
+      console.log('local weather data in use');
+      const localWeatherData = JSON.parse(localStorage.getItem('localWeatherData'));
+      
+      this.setState({
+        current:localWeatherData.current,
+        currentWeather:localWeatherData.current.weather[0],
+        hourlyForecast:localWeatherData.hourly.slice(0,24),
+        daily:localWeatherData.daily.slice(1,8),
+        today:localWeatherData.daily,
+        isLoaded:true
+      });
+    
+    }
+
+    }
+
+
+
+    fetchWeatherData(lat,lng){
+      fetch(`${api.base}/onecall?lat=${lat}&lon=${lng}&appid=${api.key}&units=imperial`)
+      .then(res=>res.json())
+      .then(
+        (data)=>{
+          this.setState({
+            current:data.current,
+            currentWeather:data.current.weather[0],
+            hourlyForecast:data.hourly.slice(0,24),
+            daily:data.daily.slice(1,8),
+            today:data.daily,
+            isLoaded:true
+          });
+          // cache stuff 
+          let currTime = new Date();
+          localStorage.setItem('TimeStamp', currTime);
+          localStorage.setItem('localWeatherData',JSON.stringify(data));
+        }
+       
+      )
+      .catch((err)=>{
+        console.log(err);
+      })
+
+      fetch(`${api.base}/weather?lat=${lat}&lon=${lng}&appid=${api.key}`)
+      .then(res=>res.json())
+      .then(
+      (data)=>{
+        this.setState({
+          city:data.name
+        })
+      }
+      )
+      .catch((err)=>{
+        console.log(err);
+      })
+
+    }
+  
+
+    componentDidMount(){
+      this.init();
+    }
+  
+
+
+    render() {
+      const { current, daily, today, hourlyForecast,currentWeather, isLoaded } = this.state;
+ 
+
+      if(!this.state.isLoaded){
+        return (
+          <div className="App-Loading-State">
+            <img src={loadingImage} className="App-Loading-State__img" alt="loading state"/>
+            <h4>Loading...</h4>
+          </div>
+        );
+        
+      } else {
+        return (
+          <div className="App" style={appBackground}>
+         
+            <Header current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
+            <TodaysForecast hourlyForecast={hourlyForecast}/>
+            <TenDayForecast daily={daily}/>
+            <CurrentDescription currentWeather={currentWeather} today={today}/>
+            <Details current={current}/> 
+           
+          </div>
+          );
+      }
+   
+    }
+   }
+
+export default App;

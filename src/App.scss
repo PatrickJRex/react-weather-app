@@ -1,0 +1,79 @@
+@import './scss/reset';
+@import './scss/type';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
+
+html {font-size: 100%;} /*16px*/
+body{
+  font-size: 16px;
+}
+
+// loading state
+.App-Loading-State{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'SF Pro','Poppins', sans-serif;
+  width:100vw;
+  height:100vh;
+
+  &__img{
+    display:block;
+  }
+
+}
+
+// main app
+.App {
+  width: 100%;
+  font-family: 'SF Pro','Poppins', sans-serif;
+  min-height: 100vh;
+  text-align: center;
+  margin:0 auto;
+  color:#fff;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size:cover;
+  display: grid;
+
+  &:after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content:'';
+    background: linear-gradient(to top, rgba(0,0,0,0.66),rgba(#000,0.33),transparent);
+    z-index: 1;
+  }
+
+}
+
+
+
+@import './scss/currentConditions';
+@import './scss/todaysForecast';
+@import './scss/nextTenDays';
+
+.CurrentDescription{
+  position: relative;
+  z-index:20;
+  text-align: left;
+  margin:1rem auto;
+  border:1px solid rgba(#fff,0.33);
+  border-left: none;
+  border-right: none;
+  padding:1rem;
+  width:100%;
+  max-width: 768px;
+
+
+  h5{
+      margin:0;
+  }
+}
+
+@import './scss/details';
+
