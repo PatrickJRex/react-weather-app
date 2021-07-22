@@ -19,7 +19,7 @@ const api = {
 
 
   const appBackground = {
-    backgroundImage: 'url(https://source.unsplash.com/1600x900/?weather,clear)'
+    backgroundImage: 'url(https://source.unsplash.com/1600x900/?weather,sunny)'
   }
 
 
@@ -38,7 +38,8 @@ const api = {
       lng:null,
       current:[],
       currentWeather:[],
-      daily:[]
+      daily:[],
+      forecast:{}
     }
 
     }
@@ -96,7 +97,8 @@ const api = {
             hourlyForecast:data.hourly.slice(0,24),
             daily:data.daily.slice(1,8),
             today:data.daily,
-            isLoaded:true
+            isLoaded:true,
+            forecast:data
           });
           // cache stuff 
           let currTime = new Date();
@@ -150,11 +152,10 @@ const api = {
           <div className="App" style={appBackground}>
          
             <Header current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
-            <TodaysForecast hourlyForecast={hourlyForecast}/>
+            <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>
             <TenDayForecast daily={daily}/>
-            <CurrentDescription currentWeather={currentWeather} today={today}/>
-            <Details current={current}/> 
            
+            
           </div>
           );
       }

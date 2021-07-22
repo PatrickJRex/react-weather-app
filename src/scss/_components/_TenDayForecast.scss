@@ -1,0 +1,51 @@
+.nextTenDaysForecast{
+   
+    &__list{
+        
+    }
+
+
+    &__date{
+        flex:0.3;
+        font-weight:600;
+        margin-bottom: 0;
+    }
+
+       &__hiLo{
+           flex:0.4;
+           text-align: center;
+
+           p{
+               margin-bottom:0;
+           }
+       }
+
+        &__item{
+            padding:var(--padding-md);
+            display:flex;
+            align-items: center;
+            width:auto;
+            justify-content: space-between;
+            @extend .position--relative;
+            @extend .z-index--10;
+
+        }
+
+        &__high{
+            display:inline-flex;
+            margin:0.5rem;
+        }
+
+        &__low{
+            opacity:0.6;
+            display:inline-flex;
+
+        }
+
+        &__icon{
+            flex:0.3;
+            text-align: right;
+            margin-bottom: 0;;
+        }
+    
+}

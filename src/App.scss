@@ -1,5 +1,8 @@
 @import './scss/reset';
 @import './scss/type';
+@import './scss/_bootstrap/padding';
+@import './scss/_bootstrap/positions';
+@import './scss/_bootstrap/mixins';
 
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap');
@@ -8,12 +11,16 @@
 :root{
   --brand-blue:#27AAE1;
   --brand-black:#07070D;
+  --main-z-index:10;
+  --app-white:#f1f1f1;
+  --border-radius:8px;
 }
 
 
 html {font-size: 100%;} /*16px*/
 body{
   font-size: 16px;
+  overflow-x:hidden;
 }
 
 // loading state
@@ -40,17 +47,14 @@ body{
 
 // main app
 .App {
-  width: 100%;
   font-family: 'SF Pro','Poppins', sans-serif;
   min-height: 100vh;
-  text-align: center;
   margin:0 auto;
-  color:#fff;
+  color:var(--app-white);
   position: relative;
   background-color:var(--brand-blue);
   background-repeat: no-repeat;
   background-size:cover;
-  display: grid;
 
   &:after{
     position: absolute;
@@ -59,35 +63,16 @@ body{
     left: 0;
     right: 0;
     content:'';
-    background: linear-gradient(to top, rgba(0,0,0,0.66),rgba(#000,0.33),transparent);
-    z-index: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.99),rgba(#000,0.33),transparent);
+    z-index: 0;
   }
 
 }
 
 
 
-@import './scss/currentConditions';
-@import './scss/todaysForecast';
-@import './scss/nextTenDays';
 
-.CurrentDescription{
-  position: relative;
-  z-index:20;
-  text-align: left;
-  margin:1rem auto;
-  border:1px solid rgba(#fff,0.33);
-  border-left: none;
-  border-right: none;
-  padding:1rem;
-  width:100%;
-  max-width: 768px;
-
-
-  h5{
-      margin:0;
-  }
-}
-
-@import './scss/details';
-
+// components 
+@import './scss/_components/Header';
+@import './scss/_components/TodaysForecast';
+@import './scss/_components/TenDayForecast';

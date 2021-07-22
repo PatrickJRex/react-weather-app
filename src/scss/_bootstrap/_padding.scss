@@ -1,0 +1,18 @@
+:root{
+    --spacing-unit:8px;
+    --padding-sm:var(--spacing-unit);
+    --padding-md:calc(2 * var(--spacing-unit));
+    --padding-lg:calc(4 * var(--spacing-unit));
+}
+
+.padding{
+    &--sm{
+        padding:var(--padding-sm);
+    }
+    &--md{
+        padding:var(--padding-md);
+    }
+    &--lg{
+        padding:var(--padding-lg);
+    }
+}

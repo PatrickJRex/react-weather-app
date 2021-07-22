@@ -2,24 +2,39 @@ import React from 'react';
 import moment from 'moment';
 import createWeatherIcons from '../data/weatherIconCreator';
 
-const  TodaysForecast = ({hourlyForecast}) => {
+const  TodaysForecast = ({hourlyForecast, current, today}) => {
 
-
+   
+      
     if(!hourlyForecast){
         return <p>...loading</p>
     } else {
 
     return(
-        <menu className="todaysForecast">
+        <>
+    
+        <div className="padding--md z-index--10 position--relative">
+        <h4 className="h5">Hourly forecast</h4>
+        </div>
+
+        <div className="todaysForecast">
+        <div className="todaysForecast__item" >
+          <span className="todaysForecast__item__time">Now</span>
+          <span className="h3 todaysForecast__item__icon">{createWeatherIcons(today[0].weather[0].id)}</span> 
+          <span className="todaysForecast__item__temp h5">{Math.round(current.temp)}<sup>&deg;</sup></span>
+         </div>
+
         {hourlyForecast.map((item,index) => 
 
          <div className="todaysForecast__item" key={index}>
-          <span>{moment.unix(item.dt).format("hh A")}</span>
-          {createWeatherIcons(item.weather[0].id)}     
-          <span className="todaysForecast__item__temp">{Math.round(item.temp)}<sup>&deg;</sup></span>
+          <span className="todaysForecast__item__time">{moment.unix(item.dt).format("LT")}</span>
+          <span className="h3 todaysForecast__item__icon"> {createWeatherIcons(item.weather[0].id)}    </span> 
+          <span className="todaysForecast__item__temp h5">{Math.round(item.temp)}<sup>&deg;</sup></span>
          </div>
         )}
-        </menu>
+        </div>
+
+        </>
 
     );
     }

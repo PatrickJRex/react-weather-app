@@ -9,26 +9,32 @@ const TenDayForecast = ({daily}) => {
     } else {
     return(
         <section className="nextTenDaysForecast">
-        <menu className="nextTenDaysForecast__list">
+          <div className="padding--md position--relative z-index--10" >
+            <h5 className="h5">Next week</h5>
+          </div>
+        <div className="nextTenDaysForecast__list">
             {daily.map((item,index) => 
+              
               <div className="nextTenDaysForecast__item" key={index}> 
-              <h5 className="nextTenDaysForecast__date">
+              <p className="nextTenDaysForecast__date h6">
                   {moment.unix(item.dt).format("dddd")}
-              </h5>
+              </p>
                  
                  
-                  <h4 className="nextTenDaysForecast__mainForecast">
-                    {createWeatherIcons(item.weather[0].id)}
-                  </h4> 
+                 
                  
                  <section className="nextTenDaysForecast__hiLo">
-                 <h5 className="nextTenDaysForecast__high">{Math.round(item.temp.max)}</h5>
-                  <h5 className="nextTenDaysForecast__low">{Math.round(item.temp.min)}</h5>
+                 <p className="nextTenDaysForecast__high h6">{Math.round(item.temp.max)}&deg;</p>
+                 <p className="nextTenDaysForecast__low h6">{Math.round(item.temp.min)}&deg;</p>
                  </section>
+
+                 <p className="nextTenDaysForecast__icon h6">
+                    {createWeatherIcons(item.weather[0].id)}
+                  </p> 
           
                   </div>
             )}
-        </menu>
+        </div>
         
       </section>
     );
