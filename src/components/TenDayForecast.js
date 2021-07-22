@@ -8,8 +8,8 @@ const TenDayForecast = ({daily}) => {
         return <p>...loading</p>
     } else {
     return(
-        <section className="nextTenDaysForecast">
-          <div className="padding--md position--relative z-index--10" >
+        <section className="nextTenDaysForecast position--relative z-index--10 padding--md">
+          <div className="">
             <h5 className="h5">Daily Forecast</h5>
           </div>
         <div className="nextTenDaysForecast__list">
