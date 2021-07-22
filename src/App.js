@@ -6,8 +6,6 @@ import './App.scss';
 import Header from './components/header';
 import TodaysForecast from './components/todaysForecast';
 import TenDayForecast from './components/TenDayForecast';
-import CurrentDescription from './components/currentDescription';
-import Details from './components/details';
 
 // get image
 import loadingImage from './assets/download.png';
