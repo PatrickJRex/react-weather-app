@@ -10,7 +10,7 @@ function Details({current}){
 else {
     return(
         <div className="details position--relative z-index--10 padding--md">
-            <p className="">Details</p>
+            <p className="h5">Details</p>
             <br></br>
             <div className="details__row">
                 <section className="details__item">

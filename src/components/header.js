@@ -35,7 +35,7 @@ useEffect(() => {
         </section>
         <span className="currentConditions__icon"> {createWeatherIcons(today[0].weather[0].id)}</span>
         
-        <p className="currentConditions__main">{currentWeather.description}</p>
+        <p className="currentConditions__main text-transform-capitalize">{currentWeather.description}</p>
         
         <h2 className="currentConditions__temp h1">{Math.round(current.temp)}<sup>&deg;</sup></h2>
 

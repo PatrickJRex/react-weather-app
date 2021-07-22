@@ -21,7 +21,7 @@ const  TodaysForecast = ({hourlyForecast, current, today}) => {
         <div className="todaysForecast__item" >
           <span className="todaysForecast__item__time">Now</span>
           <span className="h3 todaysForecast__item__icon">{createWeatherIcons(today[0].weather[0].id)}</span> 
-          <span className="todaysForecast__item__temp h5">{Math.round(current.temp)}<sup>&deg;</sup></span>
+          <span className="todaysForecast__item__temp h4">{Math.round(current.temp)}<sup>&deg;</sup></span>
          </div>
 
         {hourlyForecast.map((item,index) => 
@@ -29,7 +29,7 @@ const  TodaysForecast = ({hourlyForecast, current, today}) => {
          <div className="todaysForecast__item" key={index}>
           <span className="todaysForecast__item__time">{moment.unix(item.dt).format("LT")}</span>
           <span className="h3 todaysForecast__item__icon"> {createWeatherIcons(item.weather[0].id)}    </span> 
-          <span className="todaysForecast__item__temp h5">{Math.round(item.temp)}<sup>&deg;</sup></span>
+          <span className="todaysForecast__item__temp h4">{Math.round(item.temp)}<sup>&deg;</sup></span>
          </div>
         )}
         </div>

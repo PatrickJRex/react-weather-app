@@ -12,6 +12,7 @@ const TenDayForecast = ({daily}) => {
           <div className="">
             <h5 className="h5">Daily Forecast</h5>
           </div>
+          <br/>
         <div className="nextTenDaysForecast__list">
             {daily.map((item,index) => 
               
