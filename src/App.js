@@ -9,7 +9,7 @@ import TenDayForecast from './components/TenDayForecast';
 import Details from './components/details';
 
 // get image
-import loadingImage from './assets/download.png';
+import loadingImage from './assets/App Icon - 120x120.svg';
 
 const weatherApi = {
   key:process.env.REACT_APP_WEATHER_API_KEY,
