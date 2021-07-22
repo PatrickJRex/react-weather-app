@@ -29,9 +29,12 @@ body{
   display:flex;
   align-items: center;
   justify-content: center;
-  font-family: 'SF Pro','Poppins', sans-serif;
   width:100vw;
   height:100vh;
+
+
+font-family: rig-sans, sans-serif;
+
 
   &__content{
     display:flex;
@@ -48,7 +51,8 @@ body{
 
 // main app
 .App {
-  font-family: 'SF Pro','Poppins', sans-serif;
+  font-family: rig-sans, sans-serif;
+  font-size:16px;
   min-height: 100vh;
   margin:0 auto;
   color:var(--app-white);

@@ -16,7 +16,7 @@ const TenDayForecast = ({daily}) => {
             {daily.map((item,index) => 
               
               <div className="nextTenDaysForecast__item" key={index}> 
-              <p className="nextTenDaysForecast__date h6">
+              <p className="nextTenDaysForecast__date h5">
                   {moment.unix(item.dt).format("dddd")}
               </p>
                  
@@ -24,11 +24,11 @@ const TenDayForecast = ({daily}) => {
                  
                  
                  <section className="nextTenDaysForecast__hiLo">
-                 <p className="nextTenDaysForecast__high h6">{Math.round(item.temp.max)}&deg;</p>
-                 <p className="nextTenDaysForecast__low h6">{Math.round(item.temp.min)}&deg;</p>
+                 <p className="nextTenDaysForecast__high h5">{Math.round(item.temp.max)}&deg;</p>
+                 <p className="nextTenDaysForecast__low h5">{Math.round(item.temp.min)}&deg;</p>
                  </section>
 
-                 <p className="nextTenDaysForecast__icon h6">
+                 <p className="nextTenDaysForecast__icon h5">
                     {createWeatherIcons(item.weather[0].id)}
                   </p> 
           

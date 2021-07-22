@@ -1,6 +1,5 @@
 .nextTenDaysForecast{
-    background:rgba(#fff,0.05);
-    border-radius: var(--border-radius);
+   
 
    
     &__list{
@@ -9,7 +8,7 @@
 
     &__date{
         flex:0.3;
-        font-weight:600;
+        font-weight:500;
         margin-bottom: 0;
     }
 
@@ -23,8 +22,10 @@
        }
 
         &__item{
-            padding-top:var(--padding-md);
-            padding-bottom:var(--padding-md);
+           padding:var(--padding-md);
+            border-radius: var(--border-radius);
+            background:rgba(#fff,0.11);
+            margin:0.5rem -0.5rem;
             display:flex;
             align-items: center;
             width:auto;

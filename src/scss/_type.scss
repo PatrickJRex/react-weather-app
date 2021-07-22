@@ -1,9 +1,17 @@
+@import url("https://use.typekit.net/xus6kib.css");
+
 h1, h2, h3, h4, h5 {
-    font-family: 'SF Pro','Poppins', sans-serif;
-    font-weight: 400;
+
+
+
+
+  font-family: rig-sans, sans-serif;
+  font-weight: 400;
     line-height: 1.15;
   }
-  
+
+
+
   h1, .h1 {
     margin-top: 0;
     font-size: 4.209rem;
@@ -15,11 +23,6 @@ h1, h2, h3, h4, h5 {
   
   h4, .h4 {font-size: 1.777rem;}
   
-  h5, .h5 {font-size: 1.333rem;}
+  h5,.h5 {font-size: 1.333rem;}
   
-  p {
-    font-size: 1rem;  
-    margin-bottom: 1.15rem;
-}
-
   small, .text_small {font-size: 0.75rem;}

@@ -67,7 +67,9 @@ const ipDataApi = {
 
 
       if(localStorage.getItem('location-data')){
+       
         const localData = JSON.parse(localStorage.getItem('location-data'));
+       
         this.setState({
           city:localData.city,
           lat:localData.latitude,
@@ -75,6 +77,7 @@ const ipDataApi = {
         })
 
       } else {
+        
         this.fetchIpData();
 
       }
@@ -87,13 +90,16 @@ const ipDataApi = {
       fetch(`${ipDataApi.base}?api-key=${ipDataApi.key}`)
       .then((data)=> data.json())
       .then((res)=> {
+        
         console.log(res)
         this.setState({
           city:res.city,
           lat:res.latitude,
           lng:res.longitude
         })
+        
         localStorage.setItem('location-data',JSON.stringify(res));
+        
         this.fetchWeatherData(this.state.lat,this.state.lng);
       })
       .catch((err)=>{
