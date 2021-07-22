@@ -11,6 +11,7 @@
 :root{
   --brand-blue:#27AAE1;
   --brand-black:#07070D;
+  --brand-yellow:yellow;
   --main-z-index:10;
   --app-white:#f1f1f1;
   --border-radius:8px;
@@ -55,6 +56,7 @@ body{
   background-color:var(--brand-blue);
   background-repeat: no-repeat;
   background-size:cover;
+  padding-bottom:var(--spacing-unit);
 
   &:after{
     position: absolute;
@@ -76,3 +78,4 @@ body{
 @import './scss/_components/Header';
 @import './scss/_components/TodaysForecast';
 @import './scss/_components/TenDayForecast';
+@import './scss/_components/Details';

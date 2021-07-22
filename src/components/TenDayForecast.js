@@ -10,7 +10,7 @@ const TenDayForecast = ({daily}) => {
     return(
         <section className="nextTenDaysForecast">
           <div className="padding--md position--relative z-index--10" >
-            <h5 className="h5">Next week</h5>
+            <h5 className="h5">Daily Forecast</h5>
           </div>
         <div className="nextTenDaysForecast__list">
             {daily.map((item,index) => 

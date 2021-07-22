@@ -11,3 +11,7 @@ $zIndexs:(
         z-index: #{$zIndex};
     }
 }
+
+@mixin border-bottom {
+    border-bottom:0.6px solid var(--app-white);
+}

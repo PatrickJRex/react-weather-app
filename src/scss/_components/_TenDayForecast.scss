@@ -1,7 +1,10 @@
 .nextTenDaysForecast{
+    background:rgba(#fff,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+
    
     &__list{
-        
     }
 
 
