@@ -16,7 +16,7 @@ useEffect(() => {
    console.log(curTime);
   }, 60000);
   return () => clearInterval(interval);
-}, [curTime,moment]);
+}, [curTime]);
 
 
   if(!today){
