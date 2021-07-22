@@ -1,5 +1,5 @@
-@import './scss/reset';
 @import './scss/type';
+@import './scss/_bootstrap/reset';
 @import './scss/_bootstrap/padding';
 @import './scss/_bootstrap/positions';
 @import './scss/_bootstrap/mixins';
@@ -65,7 +65,8 @@ body{
     left: 0;
     right: 0;
     content:'';
-    background: linear-gradient(to top, rgba(0,0,0,0.99),rgba(#000,0.33),transparent);
+    background: rgba(#000,0.25);
+    backdrop-filter:blur(5px);
     z-index: 0;
   }
 

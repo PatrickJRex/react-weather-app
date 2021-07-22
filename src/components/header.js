@@ -30,7 +30,7 @@ useEffect(() => {
 
          {/* City chooser */}
         <section className="currentConditions__top z-index--10">
-        <p className="currentConditions__city h5">Frackville</p>
+        <p className="currentConditions__city h5">{city}</p>
         <p className="h5">{ time }</p>
         </section>
         <span className="currentConditions__icon"> {createWeatherIcons(today[0].weather[0].id)}</span>
@@ -42,8 +42,13 @@ useEffect(() => {
         <div className="currentConditions__overall">
           {/* <h4 className="h5">H:{Math.round(today[0].temp.max)}<sup>&deg;</sup></h4>
           <h4 className="h5">L:{Math.round(today[0].temp.min)}<sup>&deg;</sup></h4> */}
-          <h4 className="h5">{current.wind_speed}mph</h4>
-          <h4 className="h5">{current.humidity}%</h4>
+          <h4 className="h5">
+          <i className="wi wi-strong-wind"></i>
+          {current.wind_speed}/mph</h4>
+          <h4 className="h5">
+          <i className="wi wi-humidity"></i>
+  
+          {current.humidity}%</h4>
 
         </div>
        </header>

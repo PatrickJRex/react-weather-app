@@ -11,9 +11,14 @@ import Details from './components/details';
 // get image
 import loadingImage from './assets/download.png';
 
-const api = {
+const weatherApi = {
   key:process.env.REACT_APP_WEATHER_API_KEY,
   base:"https://api.openweathermap.org/data/2.5/"
+}
+
+const ipDataApi = {
+  base:"https://api.ipdata.co/",
+  key:process.env.REACT_APP_IP_DATA_KEY
 }
 
 
@@ -44,30 +49,66 @@ const api = {
     }
 
     getWeatherByLocation = () => {
-      if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(
-          (pos) =>{
-            this.setState({
-              lat:pos.coords.latitude,
-              lng:pos.coords.longitude
-            })
-            this.fetchWeatherData(this.state.lat,this.state.lng);
-          },
-         (err)=>{
-           console.log(err)
-         }
-        );
+      // if(navigator.geolocation){
+      //   navigator.geolocation.getCurrentPosition(
+      //     (pos) =>{
+      //       this.setState({
+      //         lat:pos.coords.latitude,
+      //         lng:pos.coords.longitude
+      //       })
+      //       this.fetchWeatherData(this.state.lat,this.state.lng);
+      //     },
+      //    (err)=>{
+      //      console.log(err)
+      //    }
+      //   );
+      // }
+
+
+
+      if(localStorage.getItem('location-data')){
+        const localData = JSON.parse(localStorage.getItem('location-data'));
+        this.setState({
+          city:localData.city,
+          lat:localData.latitude,
+          lng:localData.longitude
+        })
+
+      } else {
+        this.fetchIpData();
+
       }
+
+
+
+    }
+
+    fetchIpData = () => {
+      fetch(`${ipDataApi.base}?api-key=${ipDataApi.key}`)
+      .then((data)=> data.json())
+      .then((res)=> {
+        console.log(res)
+        this.setState({
+          city:res.city,
+          lat:res.latitude,
+          lng:res.longitude
+        })
+        localStorage.setItem('location-data',JSON.stringify(res));
+        this.fetchWeatherData(this.state.lat,this.state.lng);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
     }
 
     init(){
+  
     this.getWeatherByLocation();
   
     if(!localStorage.getItem('localWeatherData')){
       this.getWeatherByLocation();
 
     } else {
-      console.log('local weather data in use');
       const localWeatherData = JSON.parse(localStorage.getItem('localWeatherData'));
       
       this.setState({
@@ -86,7 +127,7 @@ const api = {
 
 
     fetchWeatherData(lat,lng){
-      fetch(`${api.base}/onecall?lat=${lat}&lon=${lng}&appid=${api.key}&units=imperial`)
+      fetch(`${weatherApi.base}/onecall?lat=${lat}&lon=${lng}&appid=${weatherApi.key}&units=imperial`)
       .then(res=>res.json())
       .then(
         (data)=>{
@@ -110,7 +151,7 @@ const api = {
         console.log(err);
       })
 
-      fetch(`${api.base}/weather?lat=${lat}&lon=${lng}&appid=${api.key}`)
+      fetch(`${weatherApi.base}/weather?lat=${lat}&lon=${lng}&appid=${weatherApi.key}`)
       .then(res=>res.json())
       .then(
       (data)=>{

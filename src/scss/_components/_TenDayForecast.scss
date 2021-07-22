@@ -1,6 +1,5 @@
 .nextTenDaysForecast{
     background:rgba(#fff,0.05);
-    backdrop-filter: blur(10px);
     border-radius: var(--border-radius);
 
    
@@ -24,7 +23,8 @@
        }
 
         &__item{
-            padding:var(--padding-md);
+            padding-top:var(--padding-md);
+            padding-bottom:var(--padding-md);
             display:flex;
             align-items: center;
             width:auto;

@@ -51,7 +51,7 @@ else {
                     <h5>{Math.round(current.pressure)}<small>hPa</small></h5>
                 </section>
                 <section className="details__item">
-                    <h6 className="details__item__icon"><i className="wi wi-cloud"></i> clouds</h6>
+                    <h6 className="details__item__icon"><i className="wi wi-cloud"></i> Clouds</h6>
                     <h5>{Math.round(current.clouds)}<sup>%</sup></h5>
                 </section>
             </div>
@@ -62,7 +62,7 @@ else {
                         <h5>{current.visibility}</h5>
                 </section>
                 <section className="details__item">
-                    <h6 className="details__item__icon"><i className="wi wi-horizon-alt"></i> UV INdex</h6>
+                    <h6 className="details__item__icon"><i className="wi wi-horizon-alt"></i> UV Index</h6>
                     <h5>{current.uvi}</h5>
                 </section>
 

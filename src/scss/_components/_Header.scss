@@ -48,6 +48,14 @@
             margin:1rem;
         }
 
+        .wi{
+            margin-right:0.5rem;
+
+            &-humidity{
+                color:var(--brand-blue);
+            }
+        }
+
     }
 
 }
