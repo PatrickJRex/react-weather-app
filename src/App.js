@@ -56,12 +56,13 @@ const ipDataApi = {
         this.setState({
           city:localData.city,
           lat:localData.latitude,
-          lng:localData.longitude
+          lng:localData.longitude,
+          region:localData.region_code
         });
 
        
 
-        this.fetchWeatherData(this.state.lat,this.state.lng);
+        this.fetchWeatherData(localData.latitude,localData.longitude);
 
 
       } else {
@@ -83,9 +84,12 @@ const ipDataApi = {
         this.setState({
           city:res.city,
           lat:res.latitude,
-          lng:res.longitude
+          lng:res.longitude,
+          region:res.region_code
+
         })
         
+        localStorage.setItem('location-data', JSON.stringify(res));
         
         this.fetchWeatherData(this.state.lat,this.state.lng);
       })
@@ -161,7 +165,7 @@ const ipDataApi = {
 
 
     render() {
-      const { current, daily, today, hourlyForecast,currentWeather } = this.state;
+      const { region, current, daily, today, hourlyForecast,currentWeather } = this.state;
  
 
       if(!this.state.isLoaded){
@@ -178,7 +182,7 @@ const ipDataApi = {
         return (
           <div className="App">
          
-            <Header current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
+            <Header region={region} current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
             <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>
             <TenDayForecast daily={daily}/>
             <Details current={current} />
