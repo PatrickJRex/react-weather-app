@@ -1,0 +1,29 @@
+.CovidCases{
+ &__case{
+    padding:var(--padding-md);
+    border-radius: var(--border-radius);
+    background:rgba(#fff,0.11);
+    margin:0.5rem -0.5rem;
+ }
+
+ &__heading{
+     display:flex;
+     justify-content:space-between;
+     padding:var(--padding-sm);
+
+ }
+
+ &__listing{
+  &__item{
+      display:flex;
+      justify-content:space-between;
+      padding:var(--padding-sm);
+      @include border-bottom;
+
+      &:last-of-type{
+          border:none;
+      }
+
+  }
+ }
+}

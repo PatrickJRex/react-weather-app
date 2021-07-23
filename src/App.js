@@ -11,6 +11,7 @@ import Details from './components/details';
 // get image
 import loadingImage from './assets/App Icon - 120x120.svg';
 import DynamicBackground from './components/DynamicBackground';
+import CovidCases from './components/CovidCases';
 
 const weatherApi = {
   key:process.env.REACT_APP_WEATHER_API_KEY,
@@ -57,7 +58,8 @@ const ipDataApi = {
           city:localData.city,
           lat:localData.latitude,
           lng:localData.longitude,
-          region:localData.region_code
+          region:localData.region,
+          regionCode:localData.region_code
         });
 
        
@@ -165,7 +167,7 @@ const ipDataApi = {
 
 
     render() {
-      const { region, current, daily, today, hourlyForecast,currentWeather } = this.state;
+      const { region,regionCode, current, daily, today, hourlyForecast,currentWeather } = this.state;
  
 
       if(!this.state.isLoaded){
@@ -185,6 +187,7 @@ const ipDataApi = {
             <Header region={region} current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
             <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>
             <TenDayForecast daily={daily}/>
+            <CovidCases region={region} regionCode={regionCode} />
             <Details current={current} />
             <DynamicBackground currentWeather={currentWeather}/>
           </div>
