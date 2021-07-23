@@ -7,11 +7,11 @@ function CovidCases({region,regionCode}) {
        key: process.env.REACT_APP_COVID_DATA_KEY
    }
     
-//    const [deaths, showDeaths] = useState(false);
+   const url = covidApi.base.key; 
    const [covid, setCases] = useState([]);
    
-   const fetchCases = () => {
-    fetch(covidApi.base+covidApi.key)
+   const fetchCases = (url) => {
+    fetch(url)
     .then((data)=> data.json())
     .then((res)=>{
        setCases(res.actuals);
@@ -20,8 +20,8 @@ function CovidCases({region,regionCode}) {
    }
 
     useEffect(() => {
-       fetchCases();
-    },[]);
+       fetchCases(url);
+    });
 
     return (
         <div className="position--relative z-index--10 padding--md">
