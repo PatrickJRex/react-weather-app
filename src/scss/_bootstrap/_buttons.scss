@@ -1,0 +1,10 @@
+.weather-button{
+    padding:var(--padding-sm);
+    appearance:none;
+    border:none;
+
+    &--clear{
+        background:transparent;
+        color:var(--app-white);
+    }
+}

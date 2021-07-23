@@ -1,11 +1,5 @@
-@import './scss/type';
-@import './scss/_bootstrap/reset';
-@import './scss/_bootstrap/padding';
-@import './scss/_bootstrap/positions';
-@import './scss/_bootstrap/mixins';
 
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,400&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
 
 :root{
@@ -16,6 +10,14 @@
   --app-white:#f1f1f1;
   --border-radius:8px;
 }
+
+
+@import './scss/type';
+@import './scss/_bootstrap/reset';
+@import './scss/_bootstrap/padding';
+@import './scss/_bootstrap/positions';
+@import './scss/_bootstrap/mixins';
+@import './scss/_bootstrap/buttons';
 
 
 html {font-size: 100%;} /*16px*/

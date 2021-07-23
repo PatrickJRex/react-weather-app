@@ -22,10 +22,8 @@ const ipDataApi = {
 }
 
 
-  const appBackground = {
-    backgroundImage: 'url(https://source.unsplash.com/1600x900/?weather,sunny)'
-  }
 
+  
 
   class App extends Component {
     constructor(props){
@@ -46,27 +44,16 @@ const ipDataApi = {
       forecast:{}
     }
 
+    this.appBackground = {
+       backgroundImage: `url(https://source.unsplash.com/weather)`
+
+    }
+
     }
 
     getWeatherByLocation = () => {
-      // if(navigator.geolocation){
-      //   navigator.geolocation.getCurrentPosition(
-      //     (pos) =>{
-      //       this.setState({
-      //         lat:pos.coords.latitude,
-      //         lng:pos.coords.longitude
-      //       })
-      //       this.fetchWeatherData(this.state.lat,this.state.lng);
-      //     },
-      //    (err)=>{
-      //      console.log(err)
-      //    }
-      //   );
-      // }
-
-
-
-      if(localStorage.getItem('location-data')){
+ 
+     if(localStorage.getItem('location-data')){
        
         const localData = JSON.parse(localStorage.getItem('location-data'));
        
@@ -74,10 +61,15 @@ const ipDataApi = {
           city:localData.city,
           lat:localData.latitude,
           lng:localData.longitude
-        })
+        });
+
+       
+
+        this.fetchWeatherData(this.state.lat,this.state.lng);
+
 
       } else {
-        
+    
         this.fetchIpData();
 
       }
@@ -98,7 +90,6 @@ const ipDataApi = {
           lng:res.longitude
         })
         
-        localStorage.setItem('location-data',JSON.stringify(res));
         
         this.fetchWeatherData(this.state.lat,this.state.lng);
       })
@@ -109,24 +100,10 @@ const ipDataApi = {
 
     init(){
   
-    this.getWeatherByLocation();
   
-    if(!localStorage.getItem('localWeatherData')){
-      this.getWeatherByLocation();
+    this.getWeatherByLocation();
+   
 
-    } else {
-      const localWeatherData = JSON.parse(localStorage.getItem('localWeatherData'));
-      
-      this.setState({
-        current:localWeatherData.current,
-        currentWeather:localWeatherData.current.weather[0],
-        hourlyForecast:localWeatherData.hourly.slice(0,24),
-        daily:localWeatherData.daily.slice(1,8),
-        today:localWeatherData.daily,
-        isLoaded:true
-      });
-    
-    }
 
     }
 
@@ -136,6 +113,7 @@ const ipDataApi = {
       fetch(`${weatherApi.base}/onecall?lat=${lat}&lon=${lng}&appid=${weatherApi.key}&units=imperial`)
       .then(res=>res.json())
       .then(
+
         (data)=>{
           this.setState({
             current:data.current,
@@ -146,10 +124,12 @@ const ipDataApi = {
             isLoaded:true,
             forecast:data
           });
-          // cache stuff 
-          let currTime = new Date();
-          localStorage.setItem('TimeStamp', currTime);
-          localStorage.setItem('localWeatherData',JSON.stringify(data));
+
+          this.appBackground = {
+            backgroundImage: `url(https://source.unsplash.com/weather,${data.current.weather[0].main})`
+     
+         }
+
         }
        
       )
@@ -172,6 +152,11 @@ const ipDataApi = {
 
     }
   
+  
+      
+    
+    
+
 
     componentDidMount(){
       this.init();
@@ -195,7 +180,7 @@ const ipDataApi = {
         
       } else {
         return (
-          <div className="App" style={appBackground}>
+          <div className="App" style={this.appBackground}>
          
             <Header current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
             <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>

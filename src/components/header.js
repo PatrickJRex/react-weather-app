@@ -1,22 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import moment from 'moment';
-
+import React from 'react';
 import createWeatherIcons from '../data/weatherIconCreator';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import moment from 'moment';
 
 
 const Header = ({city,currentWeather,current,today}) => {
  
-let curTime = moment().format("LT");
+  const toggleMenu = () => {
+    alert('toggle');
+  }
 
-const [time, setTime] = useState(curTime);
-
-useEffect(() => {
-  const interval = setInterval(() => {
-   setTime(moment().format("LT"));
-   console.log(curTime);
-  }, 60000);
-  return () => clearInterval(interval);
-}, [curTime]);
 
 
   if(!today){
@@ -30,12 +24,27 @@ useEffect(() => {
 
          {/* City chooser */}
         <section className="currentConditions__top z-index--10">
-        <p className="currentConditions__city h5">{city}</p>
-        <p className="h5">{ time }</p>
+
+        <button onClick={toggleMenu} className="weather-button weather-button--clear">
+        <MenuIcon fontSize="large"/>
+        </button>
+
+        <h5 className="h5">
+          {moment().format("dddd, MMMM D")}
+        </h5>
+
+        <button onClick={toggleMenu} className="weather-button weather-button--clear">
+        <SearchIcon fontSize="large"/>
+        </button>
+      
         </section>
+
+            <section className="currentConditions__forecast position--relative z-index--20">
+            <p className="currentConditions__city h3">{city}</p>
+        <p className="currentConditions__main text-transform-capitalize">{currentWeather.description}</p>
+
         <span className="currentConditions__icon"> {createWeatherIcons(today[0].weather[0].id)}</span>
         
-        <p className="currentConditions__main text-transform-capitalize">{currentWeather.description}</p>
         
         <h2 className="currentConditions__temp h1">{Math.round(current.temp)}<sup>&deg;</sup></h2>
 
@@ -51,6 +60,8 @@ useEffect(() => {
           {current.humidity}%</h4>
 
         </div>
+            </section>
+
        </header>
 
    

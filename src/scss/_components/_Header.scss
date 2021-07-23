@@ -3,9 +3,14 @@
     // background:rgba(0,0,0,0.05);
     flex-direction: column;
     align-items: center;
+    justify-content:space-between;
     position:relative;
-    justify-content: space-between;
+    height:66vh;
+        
 
+    &__forecast{
+        text-align:center;
+    }
 
     &__top{
         display:flex;
@@ -22,7 +27,7 @@
     &__icon{
         z-index: var(--main-z-index);
         font-size: 100px;
-        margin:2rem auto;
+        margin:2rem auto 0;
         
 
     }
@@ -30,6 +35,7 @@
     &__temp{
       font-size:100px;
       z-index: var(--main-z-index);
+      line-height:1;
     }
 
     &__main{
