@@ -7,7 +7,7 @@ function CovidCases({region,regionCode}) {
        key: process.env.REACT_APP_COVID_DATA_KEY
    }
     
-   const [deaths, showDeaths] = useState(false);
+//    const [deaths, showDeaths] = useState(false);
    const [covid, setCases] = useState([]);
 
     useEffect(() => {
