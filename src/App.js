@@ -10,6 +10,7 @@ import Details from './components/details';
 
 // get image
 import loadingImage from './assets/App Icon - 120x120.svg';
+import DynamicBackground from './components/DynamicBackground';
 
 const weatherApi = {
   key:process.env.REACT_APP_WEATHER_API_KEY,
@@ -42,11 +43,6 @@ const ipDataApi = {
       currentWeather:[],
       daily:[],
       forecast:{}
-    }
-
-    this.appBackground = {
-       backgroundImage: `url(https://source.unsplash.com/weather)`
-
     }
 
     }
@@ -180,13 +176,13 @@ const ipDataApi = {
         
       } else {
         return (
-          <div className="App" style={this.appBackground}>
+          <div className="App">
          
             <Header current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
             <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>
             <TenDayForecast daily={daily}/>
             <Details current={current} />
-            
+            <DynamicBackground currentWeather={currentWeather}/>
           </div>
           );
       }

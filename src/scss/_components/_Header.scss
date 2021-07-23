@@ -9,7 +9,9 @@
         
 
     &__forecast{
-        text-align:center;
+        text-align: center;
+    display: flex;
+    flex-direction: column;
     }
 
     &__top{
