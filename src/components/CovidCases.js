@@ -9,14 +9,18 @@ function CovidCases({region,regionCode}) {
     
 //    const [deaths, showDeaths] = useState(false);
    const [covid, setCases] = useState([]);
+   
+   const fetchCases = () => {
+    fetch(covidApi.base+covidApi.key)
+    .then((data)=> data.json())
+    .then((res)=>{
+       setCases(res.actuals);
+    })
+   
+   }
 
     useEffect(() => {
-        fetch(covidApi.base+covidApi.key)
-        .then((data)=> data.json())
-        .then((res)=>{
-           setCases(res.actuals);
-        })
-       
+       fetchCases();
     },[]);
 
     return (
