@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import moment from 'moment';
 
 function DynamicBackground({currentWeather}) {
@@ -16,12 +16,6 @@ function DynamicBackground({currentWeather}) {
        time = 'day'
    }
 
-   useEffect(() => {
-       console.log(currentWeather.main)
-       return () => {
-        
-    }
-   }, [])
  
     return (
         <div className="DynamicBackground" data-time={time}>
