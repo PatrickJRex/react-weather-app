@@ -55,7 +55,6 @@ const TenDayForecast = ({daily}) => {
                  {/* Details */}
                  <div className={selected === index ? "nextTenDaysForecast__details active" : "nextTenDaysForecast__details"}>
 
-                {moment.unix(item.dt).format("LT")}
 
                 <ul className="nextTenDaysForecast__details__temps">
                 <li className="nextTenDaysForecast__temps-item">
@@ -88,46 +87,46 @@ const TenDayForecast = ({daily}) => {
                   <ul className="nextTenDaysForecast__details__grid">
                    
                    <li className="nextTenDaysForecast__grid-item">
-                    <h5>
+                    <p>
                     <i className="wi wi-wu-sunny"></i>
                      <span>{Math.round(item.uvi)}</span>
-                    </h5>
+                    </p>
                    </li>
 
                    <li className="nextTenDaysForecast__grid-item">
-                   <h5>
+                   <p>
                    <i className="wi wi-sunrise"></i>
                    <span>  {moment.unix(item.sunrise).format("LT")}</span>
-                   </h5>
+                   </p>
                    </li>
 
                    <li className="nextTenDaysForecast__grid-item">
-                   <h5>
+                   <p>
                    <i className="wi wi-sunset"></i>
                     <span> {moment.unix(item.sunset).format("LT")}</span>
-                   </h5>
+                   </p>
                    </li>
 
                    <li className="nextTenDaysForecast__grid-item">
-                   <h5>
+                   <p>
                    <i className="wi wi-rain"></i>
                     <span>{item.rain ? Math.round(item.rain) : "0"}%</span>
-                   </h5>
+                   </p>
                    </li>
 
                    <li className="nextTenDaysForecast__grid-item">
-                   <h5>
+                   <p>
                    <i className="wi wi-humidity"></i>
                    <span> {item.humidity}%</span>
-                   </h5>
+                   </p>
                    </li>
 
 
                    <li className="nextTenDaysForecast__grid-item">
-                   <h5>
+                   <p>
                    <i className="wi wi-strong-wind"></i>
                    <span> {item.wind_speed}mph</span>
-                   </h5>
+                   </p>
                    </li>
 
                   </ul>
