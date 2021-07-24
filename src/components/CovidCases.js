@@ -48,6 +48,7 @@ const cData = error ? [] : covidData;
 return (
     <div className="position--relative z-index--10 padding--md">
        <h5>Latest Coronavirus Data</h5>
+       <br />
        {error && <div>{error}</div>}
       
     

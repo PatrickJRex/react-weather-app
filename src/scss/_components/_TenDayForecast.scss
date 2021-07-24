@@ -25,7 +25,7 @@
         &__item{
             border-radius: var(--border-radius);
             background:rgba(#fff,0.15);
-            margin:0.5rem -0.5rem;
+            margin:0.5rem -0.2rem;
             width:auto;
             justify-content: space-between;
             @extend .position--relative;
@@ -39,7 +39,9 @@
             &__header{
                 display:flex;
                 align-items: center;
-                padding:var(--padding-md);
+                padding:var(--padding-sm);
+                padding-left:var(--padding-md);
+                padding-right:var(--padding-md);
 
             }
 
@@ -54,7 +56,8 @@
                     transform:rotate(-180deg);
 
                  .MuiSvgIcon-root{
-                    color:inherit
+                    color:inherit;
+                    transform:translateY(4px) translateX(-4px);
                 }
             }
             }

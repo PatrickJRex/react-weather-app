@@ -7,11 +7,13 @@ import Header from './components/header';
 import TodaysForecast from './components/todaysForecast';
 import TenDayForecast from './components/TenDayForecast';
 import Details from './components/details';
+import LocationSearch from './components/LocationSearch';
 
 // get image
 import loadingImage from './assets/App Icon - 120x120.svg';
 import DynamicBackground from './components/DynamicBackground';
 import CovidCases from './components/CovidCases';
+
 
 const weatherApi = {
   key:process.env.REACT_APP_WEATHER_API_KEY,
@@ -183,7 +185,9 @@ const ipDataApi = {
       } else {
         return (
           <div className="App">
-         
+             
+             <LocationSearch />
+
             <Header region={region} current={current} today={today} currentWeather={currentWeather} city={this.state.city}/>
             <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>
             <TenDayForecast daily={daily}/>

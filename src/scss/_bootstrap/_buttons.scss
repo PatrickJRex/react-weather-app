@@ -2,9 +2,13 @@
     padding:var(--padding-sm);
     appearance:none;
     border:none;
+    margin:0;
+    vertical-align: middle;
 
     &--clear{
         background:transparent;
         color:var(--app-white);
     }
+
+    
 }

@@ -38,14 +38,15 @@
 
 html {
   font-size: 100%;
-  min-height: calc(100% + env(safe-area-inset-top));
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  height:100vh;
 
 
 } /*16px*/
 body{
   font-size: 16px;
   overflow-x:hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
 }
 
 // loading state
@@ -57,6 +58,8 @@ body{
   height:100vh;
   background-color:var(--brand-blue);
   background-size:cover;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
 
 
 
@@ -90,7 +93,7 @@ body{
   padding-bottom:var(--spacing-unit);
 
   &:after{
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -113,3 +116,4 @@ body{
 @import './scss/_components/Details';
 @import './scss/_components/DynamicBackground';
 @import './scss/_components/CovidCases';
+@import './scss/_components/LocationSearch';

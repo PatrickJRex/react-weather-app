@@ -1,0 +1,49 @@
+.LocationSearch{
+    background:rgba(grey,0.9);
+    backdrop-filter:var(--blur);
+    width:100vw;
+    height:93vh;
+    position:fixed;
+    bottom:0;
+    z-index:30;
+    border-radius: calc(2 * var(--border-radius));
+    overflow:hidden;
+
+    &__header{
+        background:rgba(#000,0.5);
+        padding:var(--padding-md);
+        border-bottom:1px solid var(--brand-black);
+    }
+
+    &__form{
+        
+        label{
+            text-align:center;
+            display:block;
+            margin-bottom: calc(2 * var(--spacing-unit));
+        }
+
+        input[type="text"]{
+            background:rgba(grey,0.33);
+            color:var(--app-white);
+            appearance:none;
+            border:none;
+            border-radius:calc(0.5 * var(--border-radius));
+            padding:var(--padding-sm);
+            flex:0.8;
+        }
+
+        button{
+            flex:0.2;
+        }
+
+        &__input-area{
+          
+            width:100%;
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+
+
+}

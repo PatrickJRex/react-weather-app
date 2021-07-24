@@ -1,7 +1,7 @@
 import React from 'react';
 import createWeatherIcons from '../data/weatherIconCreator';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import AddIcon from '@material-ui/icons/Add';
 import moment from 'moment';
 
 
@@ -29,13 +29,12 @@ const Header = ({city,currentWeather,current,today,region}) => {
         <MenuIcon fontSize="large"/>
         </button>
 
-        <h5 className="h5">
+        <p>
           {city}, {region} <br/>
-          <small> {moment().format("dddd, MMMM D")}</small>
-        </h5>
+        </p>
 
         <button onClick={toggleMenu} className="weather-button weather-button--clear">
-        <SearchIcon fontSize="large"/>
+        <AddIcon fontSize="large"/>
         </button>
       
         </section>
