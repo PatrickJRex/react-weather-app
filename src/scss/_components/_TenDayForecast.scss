@@ -1,6 +1,7 @@
 .nextTenDaysForecast{
    
 
+    
    
     &__list{
     }
@@ -14,7 +15,7 @@
 
        &__hiLo{
            flex:0.4;
-           text-align: center;
+           text-align: right;
 
            p{
                margin-bottom:0;
@@ -22,16 +23,41 @@
        }
 
         &__item{
-           padding:var(--padding-md);
             border-radius: var(--border-radius);
-            background:rgba(#fff,0.11);
+            background:rgba(#fff,0.15);
             margin:0.5rem -0.5rem;
-            display:flex;
-            align-items: center;
             width:auto;
             justify-content: space-between;
             @extend .position--relative;
             @extend .z-index--10;
+            transition:var(--transition);
+            backdrop-filter:var(--blur);
+            cursor:pointer;
+            
+
+
+            &__header{
+                display:flex;
+                align-items: center;
+                padding:var(--padding-md);
+
+            }
+
+            &.active{
+                background-color: var(--app-white);
+                color:var(--brand-black);
+                margin-bottom:1rem;
+                box-shadow: var(--box-shadow);
+
+                .weather-button{
+                    color:var(--brand-black);
+                    transform:rotate(-180deg);
+
+                 .MuiSvgIcon-root{
+                    color:inherit
+                }
+            }
+            }
 
         }
 
@@ -51,5 +77,79 @@
             text-align: right;
             margin-bottom: 0;;
         }
+
+
+        // details grid
+    &__details{
+        background-color: var(--app-white);
+        border-radius:0 0 0.5rem 0.5rem;
+        height:0px;
+        overflow:hidden;
+        transition:var(--transition);
+        color:var(--brand-black);
+        padding-left:var(--padding-md);
+        padding-right:var(--padding-md);
+
+        &__grid{
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 1rem;
+        }
+
+        &__temps{
+            display:flex;
+            align-items:flex-start;
+            justify-content:space-between;
+            margin-bottom:calc(2 * var(--spacing-unit));
+
+            
+        }
+
+        &.active{
+            height:auto;
+            padding:var(--padding-md);
+            border-top:1px solid rgba(#000,0.09);
+        }
+      
+      }
+
+     
+      &__temps-item{
+          flex:0.25;
+          padding:var(--padding-sm);
+          border-right:1px solid rgba(#000,0.09);
+          display:flex;
+          justify-content:space-between;
+          flex-direction: column;
+          align-items:center;
+          min-height: 96px;
+
+          &:last-of-type{
+              border:none;
+          }
+
+      }
+
+      &__grid-item{
+       transition:var(--transition);
+
+       span{
+           margin-left:0.5rem;
+       }
+
+       i{
+           color:grey;
+
+           &.wi-wu-sunny,&.wi-sunrise,&.wi-sunset{
+               color:var(--brand-orange);
+           }
+
+           &.wi-raindrops,&.wi-humidity,&.wi-rain{
+               color:var(--brand-blue);
+           }
+       }
+
+      }
+      
     
 }
