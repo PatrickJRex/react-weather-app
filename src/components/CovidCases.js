@@ -10,7 +10,6 @@ const CovidCases = ({region,regionCode}) => {
 const [isLoading, setIsLoading ] = useState(true);
 const [covidData, setCovidData ] = useState([]);
 const [error,setError] = useState(null);
-const [someState, setSomeState] = useState('starting value');
 
 
 useEffect(() => {
@@ -20,6 +19,11 @@ useEffect(() => {
     const request = await axios.get(url);
     setIsLoading(false);
     setCovidData(request.data.actuals);
+
+    if(request == null) {
+        setError("request failed");
+    }
+
     return request;
    }
 
