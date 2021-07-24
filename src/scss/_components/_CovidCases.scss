@@ -13,17 +13,32 @@
 
  }
 
+ &__item{
+    display:flex;
+    justify-content:space-between;
+    padding-top:var(--padding-md);
+    padding-bottom:var(--padding-md);
+    @include border-bottom;
+    align-items: center;
+
+    p{
+        flex:0.33;
+    }
+
+    &__data-point{
+        text-align:right;
+    }
+    &__uptick{
+      text-align:right;
+    }
+
+    &:last-of-type{
+        border:none;
+    }
+
+}
+
  &__listing{
-  &__item{
-      display:flex;
-      justify-content:space-between;
-      padding:var(--padding-sm);
-      @include border-bottom;
 
-      &:last-of-type{
-          border:none;
-      }
-
-  }
  }
 }

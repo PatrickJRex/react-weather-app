@@ -9,6 +9,7 @@ if(!currentWeather || !today){
 
  } else {
 
+
  return(
     <div className="CurrentDescription position--relative z-index--10 padding--md">
        <h5>

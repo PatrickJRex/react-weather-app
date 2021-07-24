@@ -1,77 +1,118 @@
 import React, {useEffect, useState} from 'react'
+import axios from 'axios';
+import moment from 'moment';
 
-function CovidCases({region,regionCode}) {
 
-   const covidApi = {
-       base: `https://api.covidactnow.org/v2/state/${regionCode}.json?apiKey=`,
-       key: process.env.REACT_APP_COVID_DATA_KEY
+const CovidCases = ({region,regionCode}) => {
+
+
+
+const [isLoading, setIsLoading ] = useState(true);
+const [covidData, setCovidData ] = useState([]);
+const [error,setError] = useState(null);
+const [someState, setSomeState] = useState('starting value');
+
+
+useEffect(() => {
+    let url = `https://api.covidactnow.org/v2/state/${regionCode}.json?apiKey=${process.env.REACT_APP_COVID_DATA_KEY}`;
+
+   async function fetchData() {
+    const request = await axios.get(url);
+    setIsLoading(false);
+    setCovidData(request.data.actuals);
+    return request;
    }
-    
-   const url = covidApi.base.key; 
-   const [covid, setCases] = useState([]);
-   
-   const fetchCases = (url) => {
-    fetch(url)
-    .then((data)=> data.json())
-    .then((res)=>{
-       setCases(res.actuals);
-    })
-   
-   }
 
-    useEffect(() => {
-       fetchCases(url);
-    });
+   fetchData();
+}, [regionCode]);
 
+
+if(isLoading){
     return (
         <div className="position--relative z-index--10 padding--md">
-         <h5 className="h5">Latest Coronavirus Updates</h5>
-         <br/>
+        <p> 
+            It's loading
+       </p>
+    </div>
 
-        <div className="CovidCases__case">
-        <header className="CovidCases__heading">
-        <h5>{region}</h5>
-        <h5>Total</h5>
-        </header>
-        <section>
-        
-         <ul className="CovidCases__listing">
-            <li className="CovidCases__listing__item">
-             <p>Current cases </p>
-             <p>{covid.cases}</p>
-             </li>
-            <li className="CovidCases__listing__item">
-             <p>New cases </p>
-             <p>{covid.newCases}</p>
-             </li>
-            <li className="CovidCases__listing__item">
-             <p>Negative tests</p>
-             <p>{covid.negativeTests}</p>
-             </li>
-            <li className="CovidCases__listing__item">
-             <p>Positive tests </p>
-             <p>{covid.positiveTests}</p>
-             </li>
-            <li className="CovidCases__listing__item">
-             <p>Vaccines administered</p>
-             <p>{covid.vaccinesAdministered}</p>
-             </li>
-            <li className="CovidCases__listing__item">
-             <p>Deaths</p>
-             <p>{covid.deaths}</p>
-             </li>
-            <li className="CovidCases__listing__item">
-             <p>New Deaths</p>
-             <p>{covid.newDeaths}</p>
-             </li>
-         </ul>
-        </section>
-        </div>
+    );
+}
 
+
+const cData = error ? [] : covidData;
+
+return (
+    <div className="position--relative z-index--10 padding--md">
+       <h5>Latest Coronavirus Data</h5>
+       {error && <div>{error}</div>}
+      
+    
+     <section className="CovidCases__case">
+
+
+   
+       <h5 className="h5">
+           {region}
+       </h5>
+       <p>
+           Cases for {moment().format("MMMM, DD")}
+       </p>
+
+
+       <ul className="CovidCases__listing"> 
+        <li className="CovidCases__item">
+          <p className="CovidCases__item__label">Cases</p>
+          <p className="CovidCases__item__data-point">{cData.cases}</p>
+          <p className="CovidCases__item__uptick">
+          <span className="badge badge--yellow">
+
+              +{cData.newCases}
+              </span>
+              </p>
+        </li>
+
+        <li className="CovidCases__item">
+          <p className="CovidCases__item__label">Deaths</p>
+          <p className="CovidCases__item__data-point">{cData.deaths}</p>
+          <p className="CovidCases__item__uptick">
+              <span className="badge badge--yellow">
+              +{cData.newDeaths}
+              </span>
+          </p>
+        </li>
+
+        <li className="CovidCases__item">
+          <p className="CovidCases__item__label">Positive Tests</p>
+          <p className="CovidCases__item__data-point">{cData.positiveTests}</p>
+        </li>
+        <li className="CovidCases__item">
+          <p className="CovidCases__item__label">Vaccines Distributed</p>
+          <p className="CovidCases__item__data-point">{cData.vaccinesDistributed}</p>
+        </li>
+        <li className="CovidCases__item">
+          <p className="CovidCases__item__label">Vaccines Initiated</p>
+          <p className="CovidCases__item__data-point">{cData.vaccinationsInitiated}</p>
+        </li>
+        <li className="CovidCases__item">
+          <p className="CovidCases__item__label">Vaccines Completed</p>
+          <p className="CovidCases__item__data-point">{cData.vaccinationsCompleted}</p>
+        </li>
+       </ul>
+       </section>
        
-        
-        </div>
-    )
+
+    </div>
+);
+
+
+
+   
+
+   
+   
+
+
+   
 }
 
 export default CovidCases
