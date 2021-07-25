@@ -7,6 +7,7 @@ import uuid from 'react-uuid';
 
 
   const App = () => {
+
     const [region,regionCode,city,lat,lng] = FetchLocation();
     
 

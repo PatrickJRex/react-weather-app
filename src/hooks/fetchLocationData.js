@@ -23,7 +23,6 @@ useEffect(() => {
       setRegion(locationData.region);
       setRegionCode(locationData.region_code);
       setCity(locationData.city)
-      console.log(locationData.city);
       setLat(locationData.latitude)
       setLng(locationData.longitude)
    } else {
@@ -46,6 +45,8 @@ useEffect(() => {
           })
           
           localStorage.setItem('location-data', JSON.stringify(res));
+
+
         }
         })
             .catch((err)=>{

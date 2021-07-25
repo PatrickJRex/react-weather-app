@@ -5,7 +5,6 @@ import TodaysForecast from '../components/todaysForecast';
 import TenDayForecast from '../components/TenDayForecast';
 import Details from '../components/details';
 import {FetchWeatherData} from '../hooks/fetchWeatherData';
-import {FetchLocation} from '../hooks/fetchLocationData';
 
 // get image
 import loadingImage from '../assets/App Icon - 120x120.svg';
