@@ -2,7 +2,6 @@ import React from 'react';
 import createWeatherIcons from '../data/weatherIconCreator';
 import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
-import moment from 'moment';
 
 
 const Header = ({city,currentWeather,current,today,region}) => {
@@ -10,6 +9,7 @@ const Header = ({city,currentWeather,current,today,region}) => {
   const toggleMenu = () => {
     alert('toggle');
   }
+
 
 
 
@@ -41,7 +41,9 @@ const Header = ({city,currentWeather,current,today,region}) => {
 
 
       <section className="currentConditions__forecast position--relative z-index--10">
-      <span className="currentConditions__icon"> {createWeatherIcons(today[0].weather[0].id)}</span>
+      <span className="currentConditions__icon"> 
+      {createWeatherIcons(current.weather[0].id)}
+      </span>
         
         
         <h2 className="currentConditions__temp h1">{Math.round(current.temp)}<sup>&deg;</sup></h2>
