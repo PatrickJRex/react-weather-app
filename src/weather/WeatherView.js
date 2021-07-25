@@ -15,10 +15,10 @@ import CovidCases from '../components/CovidCases';
 
 
 
-function WeatherView({latitude,longitude}) {
-const [region,regionCode,city,lat,lng] = FetchLocation();
+function WeatherView({latitude,longitude,uid,region,regionCode,city}) {
 
-const [error,weather,hourlyForecast,current,currentWeather,daily,today] = FetchWeatherData(latitude,longitude);
+
+const [error,hourlyForecast,current,currentWeather,daily,today] = FetchWeatherData(latitude,longitude);
 
 
   
@@ -33,7 +33,7 @@ if(!today){
     );
   } else {
     return (
-        <div>
+        <div data-key={uid}>
          {error && <div>{error}</div>}
          <Header region={region} current={current} today={today} currentWeather={currentWeather} city={city}/>
          <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>

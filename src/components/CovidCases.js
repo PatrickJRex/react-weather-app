@@ -1,34 +1,36 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios';
+import React from 'react';
 import moment from 'moment';
-
+import { FetchCovidData } from '../hooks/fetchCovidData';
 
 const CovidCases = ({region,regionCode}) => {
 
 
-
-const [isLoading, setIsLoading ] = useState(true);
-const [covidData, setCovidData ] = useState([]);
-const [error,setError] = useState(null);
+  console.log(regionCode);
 
 
-useEffect(() => {
-    let url = `https://api.covidactnow.org/v2/state/${regionCode}.json?apiKey=${process.env.REACT_APP_COVID_DATA_KEY}`;
+const [covidData,isLoading,error] = FetchCovidData(regionCode);
 
-   async function fetchData() {
-    const request = await axios.get(url);
-    setIsLoading(false);
-    setCovidData(request.data.actuals);
+// const [covidData, setCovidData ] = useState([]);
+// const [error,setError] = useState(null);
 
-    if(request == null) {
-        setError("request failed");
-    }
 
-    return request;
-   }
+// useEffect(() => {
+//     let url = `https://api.covidactnow.org/v2/state/${regionCode}.json?apiKey=${process.env.REACT_APP_COVID_DATA_KEY}`;
 
-   fetchData();
-}, [regionCode]);
+//    async function fetchData() {
+//     const request = await axios.get(url);
+//     setIsLoading(false);
+//     setCovidData(request.data.actuals);
+
+//     if(request == null) {
+//         setError("request failed");
+//     }
+
+//     return request;
+//    }
+
+//    fetchData();
+// }, [regionCode]);
 
 
 if(isLoading){

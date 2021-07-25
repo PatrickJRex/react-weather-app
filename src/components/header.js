@@ -13,7 +13,7 @@ const Header = ({city,currentWeather,current,today,region}) => {
 
 
 
-  if(!today){
+  if(!today && city != null){
       return <p>....loading</p>
   } else {
 

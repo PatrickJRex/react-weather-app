@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import uuid from 'react-uuid'
-import { cleanup } from '@testing-library/react';
 
 
 
@@ -15,7 +14,6 @@ export const FetchWeatherData = (lat,lng) => {
     const url = `${weatherApi.base}/onecall?lat=${lat}&lon=${lng}&appid=${weatherApi.key}&units=imperial`;
 
     const [error,setError] = useState(null);
-    const [weather,setWeather] = useState([]);
     const [hourlyForecast,setHourlyForecast] = useState();
     const [current,setCurrent] = useState([]);
     const [currentWeather,setCurrentWeather] = useState([]);
@@ -33,7 +31,6 @@ export const FetchWeatherData = (lat,lng) => {
            
             if(isSubscribed){
                 setError("no error");
-                setWeather(data.weather);
                 setCurrent(data.current);
                 setCurrentWeather(data.current.weather[0]);
                 setHourlyForecast(data.hourly.slice(0,24));
@@ -54,7 +51,7 @@ export const FetchWeatherData = (lat,lng) => {
 
 
 
-    return [error,weather,hourlyForecast,current,currentWeather,daily,today,forecastId];
+    return [error,hourlyForecast,current,currentWeather,daily,today,forecastId];
 
     
 
