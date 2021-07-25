@@ -37,8 +37,6 @@ import uuid from 'react-uuid';
         latitude:42.095554,
         longitude:-79.238609,
         key: uuid()
- 
-        
       }
     ]
 
