@@ -38,7 +38,7 @@
 
 html {
   font-size: 100%;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  height:100vh;
 
 
 } /*16px*/
@@ -52,11 +52,16 @@ body{
 .App-Loading-State{
   display:flex;
   align-items: center;
+  position:fixed;
+  overflow:hidden;
+  z-index:90;
   justify-content: center;
   width:100vw;
   height:100vh;
   background-color:var(--brand-blue);
   background-size:cover;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
 
 
 
@@ -88,6 +93,8 @@ body{
   background-repeat: no-repeat;
   background-size:cover;
   padding-bottom:var(--spacing-unit);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
 
   &:after{
     position: fixed;
@@ -103,15 +110,20 @@ body{
     // transform:translateY(-10vh);
   }
 
+  
+
 }
 
 
 
 
 // components 
+@import './scss/_components/Nav';
 @import './scss/_components/Header';
 @import './scss/_components/TodaysForecast';
 @import './scss/_components/TenDayForecast';
 @import './scss/_components/Details';
 @import './scss/_components/DynamicBackground';
 @import './scss/_components/CovidCases';
+@import './scss/_components/LocationSearch';
+@import './scss/_components/LocationsList';

@@ -24,4 +24,4 @@ function DynamicBackground({currentWeather}) {
     )
 }
 
-export default DynamicBackground
+export default React.memo(DynamicBackground)
