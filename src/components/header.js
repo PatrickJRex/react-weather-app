@@ -1,8 +1,5 @@
 import React from 'react';
 import createWeatherIcons from '../data/weatherIconCreator';
-import MenuIcon from '@material-ui/icons/Menu';
-import AddIcon from '@material-ui/icons/Add';
-
 
 const Header = ({city,currentWeather,current,today,region,setSearch}) => {
  

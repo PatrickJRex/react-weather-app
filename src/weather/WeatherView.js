@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 // get parts
 import Header from '../components/header';
 import TodaysForecast from '../components/todaysForecast';
