@@ -1,5 +1,5 @@
 
-export default class Location {
+export class Location {
     constructor(regionCode,region,city,latitude,longitude,key) {
      this.region = region;
      this.regionCode = regionCode;

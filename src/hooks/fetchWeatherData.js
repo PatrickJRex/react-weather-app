@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import uuid from 'react-uuid'
+import uuid from 'react-uuid';
+
 
 
 
 export const FetchWeatherData = (lat,lng) => {
 
-    const weatherApi = {
-        key:process.env.REACT_APP_WEATHER_API_KEY,
-        base:"https://api.openweathermap.org/data/2.5/"
-      }
 
-    const url = `${weatherApi.base}/onecall?lat=${lat}&lon=${lng}&appid=${weatherApi.key}&units=imperial`;
 
     const [error,setError] = useState(null);
     const [hourlyForecast,setHourlyForecast] = useState();
@@ -21,11 +17,22 @@ export const FetchWeatherData = (lat,lng) => {
     const [forecastId, setForecastId] = useState(null);
     const [today,setToday] = useState(null);
 
+    const weatherApi = {
+        key:process.env.REACT_APP_WEATHER_API_KEY,
+        base:"https://api.openweathermap.org/data/2.5/"
+      }
 
+
+    const url = `${weatherApi.base}/onecall?lat=${lat}&lon=${lng}&appid=${weatherApi.key}&units=imperial`;
 
     useEffect(() => {
         let isSubscribed = true;
 
+
+  
+
+
+        if(lat != null && lng != null){
         axios.get(url)
         .then(({data})=>{
            
@@ -37,6 +44,7 @@ export const FetchWeatherData = (lat,lng) => {
                 setDaily(data.daily);
                 setToday(data.daily[0])
                 setForecastId(uuid());
+
             }
 
         })
@@ -44,9 +52,11 @@ export const FetchWeatherData = (lat,lng) => {
             setError("There was an error");
         })
 
+    }
+
         return () => (isSubscribed = false)
 
-    }, [url])
+    }, [url,lat,lng])
     
 
 

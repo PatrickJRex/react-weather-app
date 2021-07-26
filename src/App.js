@@ -1,51 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './assets/weather-icons.min.css';
 import './App.scss';
-import WeatherView from './weather/WeatherView';
 import {FetchLocation} from './hooks/fetchLocationData';
 import uuid from 'react-uuid';
+import WeatherView from './weather/WeatherView';
+import Nav from './components/Nav';
+import LocationSearch from './components/LocationSearch';
+import LocationsList from './components/LocationsList';
 
 
   const App = () => {
 
     const [region,regionCode,city,lat,lng] = FetchLocation();
-    
+    const [search,setSearch] = useState(false);
+    const [showLocations,setShowLocations] = useState(false);
 
-    const locations = [
-      {
-        region_code:"NJ",
-        region:"New Jersey",
-        city:"Hoboken",
-        latitude:40.745255,
-        longitude:-74.034775,
-        key: uuid()
-        
-      },
-      {
-        region_code:"CA",
-        region:"Califorina",
-        city:"Port Huene",
-        latitude:34.155834,
-        longitude:-119.202789,
-        key: uuid()
+    const locations = JSON.parse(localStorage.getItem('locations'));
 
-        
-      },
-      {
-        region_code:"NY",
-        region:"New York",
-        city:"Jamestown",
-        latitude:42.095554,
-        longitude:-79.238609,
-        key: uuid()
-      }
-    ]
 
-    if(locations.length >= 1){
+    if(locations != null && locations.length > 1){
+      console.log('using locations')
       return(
-    <div className="App">
+    <div className={search || showLocations ? "App Search-Enabled" : "App"}>
+    {search && <LocationSearch setSearch={setSearch} />}
+    <Nav setShowLocations={setShowLocations} setSearch={setSearch} region={region} city={city} />
+    {showLocations && <LocationsList setSearch={setSearch} setShowLocations={setShowLocations} />}
     {locations?.map((local)=>
-    <WeatherView regionCode={local.region_code} city={local.city} region={local.region} key={local.key} uid={local.key} latitude={local.latitude} longitude={local.longitude} />
+    <WeatherView regionCode={local.regionCode} city={local.city} region={local.region} key={local.key} uid={local.key} latitude={local.latitude} longitude={local.longitude} />
 
     )}
     </div>  
@@ -53,8 +34,10 @@ import uuid from 'react-uuid';
     } else {
 
       return(
-        <div className="App">
-         
+        <div className={search || showLocations ? "App Search-Enabled" : "App"}>
+        {search && <LocationSearch setSearch={setSearch} />}
+         {showLocations && <LocationsList setSearch={setSearch} setShowLocations={setShowLocations} />}
+         <Nav setShowLocations={setShowLocations} setSearch={setSearch} region={region} city={city} />
          <WeatherView city={city} regionCode={regionCode} region={region} latitude={lat} uid={uuid()} longitude={lng} />
 
         </div>

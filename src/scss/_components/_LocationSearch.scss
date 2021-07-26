@@ -1,23 +1,25 @@
 .LocationSearch{
     background:rgba(grey,0.9);
     backdrop-filter:var(--blur);
-    width:98vw;
-    height:93vh;
+    width:100vw;
+    height:100vh;
     position:fixed;
     bottom:0;
     z-index:30;
-    border-radius: calc(2 * var(--border-radius));
     overflow:hidden;
-    transform:translateX(1vw);
+    top:0;
+    bottom:0;
 
     // results
     &__results{
         padding-top:calc(2 * var(--spacing-unit));
         &__list{
             display:block;
-
+            font-size:17px;
+            height:34px;
+            line-height:34px;
             padding:var(--padding-sm);
-            padding-left:var(--padding-md);
+            padding-left:var(--padding-lg);
             cursor:pointer;
 
             &:hover{
@@ -32,11 +34,20 @@
 
     &__header{
         background:rgba(#000,0.5);
-        padding:var(--padding-md);
+        height:90px;
+        display:flex;
+        align-items: center;
+        justify-content:space-between;
+      
         border-bottom:1px solid var(--brand-black);
+    
+        padding: env(safe-area-inset-top) 16px 0;
+        padding-right:0;
+
     }
 
     &__form{
+        width:100%;
         
         label{
             text-align:center;
@@ -44,34 +55,47 @@
             margin-bottom: calc(2 * var(--spacing-unit));
         }
 
-        input[type="text"]{
-            color:var(--app-white);
-            background:none;
+        input[type="search"]{
+            width:100%;
+            height:36px;
+            padding:0 var(--padding-sm);
             appearance:none;
             border:none;
             outline:none;
-            padding-top:var(--padding-sm);
-            padding-bottom:var(--padding-sm);
-            padding-left:var(--padding-md);
+            background:transparent;
+            font-size:17px;
+            color:var(--app-white);
+
+            &::-webkit-search-cancel-button{
+                color:var(--app-white)
+            }
          
         }
 
+       
+
         button{
             flex:0.2;
+            font-size: 17px;
+            cursor:pointer;
         }
 
         &__input-area{
-          
-            width:100%;
-            display:flex;
-            justify-content: space-between;
+          display:flex;
 
             .input-container{
-                background:rgba(grey,0.33);
-                border-radius:var(--border-radius);
+                display:flex;
+                align-items:center;
+                height:36px;
+                border-radius: 10px;
                 flex:0.8;
-                padding:0.25rem;
-                padding-left:0.5rem;
+                background:rgba(#767680,0.24);
+                padding:0 10px 0 10px;
+            
+                
+                i{
+                    color:#EBEBF5;
+                }
 
 
 
@@ -80,4 +104,11 @@
     }
 
 
+}
+
+.App{
+    &.Search-Enabled{
+        overflow:hidden;
+        height:100vh;
+    }
 }

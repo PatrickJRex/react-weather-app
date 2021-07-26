@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 // get parts
 import Header from '../components/header';
 import TodaysForecast from '../components/todaysForecast';
@@ -18,7 +18,6 @@ function WeatherView({latitude,longitude,uid,region,regionCode,city}) {
 
 
 const [error,hourlyForecast,current,currentWeather,daily,today] = FetchWeatherData(latitude,longitude);
-
 
   
 if(!today){

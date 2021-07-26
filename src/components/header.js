@@ -4,11 +4,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 
 
-const Header = ({city,currentWeather,current,today,region}) => {
+const Header = ({city,currentWeather,current,today,region,setSearch}) => {
  
-  const toggleMenu = () => {
-    alert('toggle');
-  }
+
 
 
 
@@ -22,22 +20,7 @@ const Header = ({city,currentWeather,current,today,region}) => {
         
 
 
-         {/* City chooser */}
-        <section className="currentConditions__top z-index--10">
 
-        <button onClick={toggleMenu} className="weather-button weather-button--clear">
-        <MenuIcon fontSize="large"/>
-        </button>
-
-        <p>
-          {city}, {region} <br/>
-        </p>
-
-        <button onClick={toggleMenu} className="weather-button weather-button--clear">
-        <AddIcon fontSize="large"/>
-        </button>
-      
-        </section>
 
 
       <section className="currentConditions__forecast position--relative z-index--10">

@@ -4,6 +4,11 @@
     border:none;
     margin:0;
     vertical-align: middle;
+    cursor:pointer;
+
+    // > * {
+    //     pointer-events:none;
+    // }
 
     &--clear{
         background:transparent;

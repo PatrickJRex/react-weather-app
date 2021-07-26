@@ -1,20 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState } from 'react';
 import axios from 'axios';
-import { FetchWeatherData } from '../hooks/fetchWeatherData';
 
-const LocationSearch = () => {
+const LocationSearch = ({setSearch}) => {
 
 
-    const [searchTerm, setsearchTerm] = useState([]);
     const [results, setResults] = useState([]);
-    
+   
     const searchLocations = (evt) => {
       const value = evt.target.value; 
      
        if(value.length < 3){
-           setsearchTerm("No results found.");
        } else {
-           setsearchTerm(value);
            getSuggestions(value);
        }
 
@@ -22,12 +18,13 @@ const LocationSearch = () => {
      
      
 
-     const [error,weather,hourlyForecast,current,currentWeather,daily,forecast] = FetchWeatherData(40.781,-76.2301);
 
      
 
 
      const getLocations = (evt) => {
+
+       
         const id = evt.target.getAttribute('data-key');
         const getDetailsUrl = 'https://geocoder.ls.hereapi.com/6.2/geocode.json';
 
@@ -38,11 +35,28 @@ const LocationSearch = () => {
 
         axios.get(getDetailsUrl + params)
         .then((data)=>{
-            let coords = data.data.response.view[0].result[0].location.displayPosition;
+            // const locationDetails = data.data.response.view[0].result[0].location;
 
-           
+        //    const searchResult = {
+        //     city: locationDetails.address.city,
+        //     key: uuid(),
+        //     latitude: locationDetails.displayPosition.latitude,
+        //     longitude: locationDetails.displayPosition.longitude,
+        //     region: locationDetails.address.state,
+        //     regionCode: locationDetails.address.additionalData[1].value
+        //    }
+
+
             clearForm();
         })
+
+        .catch(()=>{
+            console.log("there was an error");
+        }
+        )
+
+
+
 
      }
 
@@ -59,16 +73,17 @@ const LocationSearch = () => {
         '&apikey=' + process.env.REACT_APP_HERE_KEY;
         axios.get(autoCompleteUrl + params)
         .then((data)=>{
-            console.log(data.data.suggestions);
             setResults(data.data.suggestions);
         });
      }
 
      const clearForm = (evt) => {
-        setsearchTerm([]);
         setResults([]);
-        evt.target.value = '';
+        setSearch(false);
+      
      }
+
+     
 
   
 
@@ -76,13 +91,13 @@ const LocationSearch = () => {
         <div className="LocationSearch">
           <header className="LocationSearch__header">
           <form className="LocationSearch__form">
-                <label>Enter city or zip code</label>
+                <label>Add a new location</label>
                 <section className="LocationSearch__form__input-area">
                 <div className="input-container">
                <i className="fa fa-search"></i>
-                <input type="text" autoFocus  onChange={searchLocations} placeholder="search for a location"/>
+                <input type="search" autoFocus  onChange={searchLocations} placeholder="Enter the city or zip"/>
                 </div>
-                <button className="weather-button weather-button--clear">
+                <button onClick={clearForm} className="weather-button weather-button--clear">
                     <p>Cancel</p>
                 </button>
                 </section>
