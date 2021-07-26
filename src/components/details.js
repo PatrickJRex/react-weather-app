@@ -26,7 +26,7 @@ else {
             <div className="details__row">
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-raindrop"></i>DEW POINT</p>
-                    <p className="h5">{current.dew_point}</p>
+                    <p className="h5">{Math.round(current.dew_point)}</p>
                 </section>
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-humidity"></i>HUMIDITY</p>
@@ -37,7 +37,7 @@ else {
             <div className="details__row">
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-strong-wind"></i>WIND Speed</p>
-                    <p className="h5">{Math.round(current.wind_speed)}<small>mph</small></p>
+                    <p className="h5">{Math.round(current.wind_speed)} mph</p>
                 </section>
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-thermometer"></i>FEELS LIKE</p>
@@ -48,22 +48,22 @@ else {
             <div className="details__row">
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-barometer"></i> Pressure</p>
-                    <p className="h5">{Math.round(current.pressure)}<small>hPa</small></p>
+                    <p className="h5">{Math.round(current.pressure)} hPa</p>
                 </section>
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-cloud"></i> Clouds</p>
-                    <p className="h5">{Math.round(current.clouds)}<sup>%</sup></p>
+                    <p className="h5">{Math.round(current.clouds)}%</p>
                 </section>
             </div>
 
             <div className="details__row">
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-dust"></i> Visibility</p>
-                        <p className="h5">{current.visibility}</p>
+                        <p className="h5">{current.visibility / 1000} MI</p>
                 </section>
                 <section className="details__item">
                     <p className="details__item__icon"><i className="wi wi-horizon-alt"></i> UV Index</p>
-                    <p className="h5">{current.uvi}</p>
+                    <p className="h5">{Math.round(current.uvi)}</p>
                 </section>
 
             </div>

@@ -38,8 +38,7 @@
 
 html {
   font-size: 100%;
-  min-height: calc(100% + env(safe-area-inset-top));
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  height:100vh;
 
 
 } /*16px*/
@@ -54,11 +53,16 @@ body{
 .App-Loading-State{
   display:flex;
   align-items: center;
+  position:fixed;
+  overflow:hidden;
+  z-index:90;
   justify-content: center;
   width:100vw;
   height:100vh;
   background-color:var(--brand-blue);
   background-size:cover;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
 
 
 
@@ -92,7 +96,7 @@ body{
   padding-bottom:var(--spacing-unit);
 
   &:after{
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -103,15 +107,20 @@ body{
     z-index: 0;
   }
 
+  
+
 }
 
 
 
 
 // components 
+@import './scss/_components/Nav';
 @import './scss/_components/Header';
 @import './scss/_components/TodaysForecast';
 @import './scss/_components/TenDayForecast';
 @import './scss/_components/Details';
 @import './scss/_components/DynamicBackground';
 @import './scss/_components/CovidCases';
+@import './scss/_components/LocationSearch';
+@import './scss/_components/LocationsList';

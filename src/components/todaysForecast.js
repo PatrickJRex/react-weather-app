@@ -4,9 +4,8 @@ import createWeatherIcons from '../data/weatherIconCreator';
 
 const  TodaysForecast = ({hourlyForecast, current, today}) => {
 
-   
       
-    if(!hourlyForecast){
+    if(!hourlyForecast && !today){
         return <p>...loading</p>
     } else {
 
@@ -20,7 +19,9 @@ const  TodaysForecast = ({hourlyForecast, current, today}) => {
         <div className="todaysForecast">
         <div className="todaysForecast__item" >
           <span className="todaysForecast__item__time">Now</span>
-          <span className="h3 todaysForecast__item__icon">{createWeatherIcons(today[0].weather[0].id)}</span> 
+          <span className="h3 todaysForecast__item__icon">
+           {createWeatherIcons(current.weather[0].id)}
+          </span> 
           <span className="todaysForecast__item__temp h4">{Math.round(current.temp)}<sup>&deg;</sup></span>
          </div>
 
