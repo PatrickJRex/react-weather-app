@@ -63,7 +63,6 @@ useEffect(() => {
 
 
        
-          // let location = new Location(res.region_code,res.region,res.city,res.latitude,res.longitude,uuid());
         
           dispatch(addlocation({
             region:res.region,
@@ -74,6 +73,17 @@ useEffect(() => {
             id:uuid()
 
           }));
+
+          let newLocation = {
+            region:res.region,
+            regionCode:res.region_code,
+            city:res.city,
+            lat:res.latitude,
+            lng:res.longitude,
+            id:uuid()
+          }
+
+          localStorage.setItem('location-data',JSON.stringify(newLocation));
     
 
         }
