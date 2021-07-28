@@ -36,7 +36,7 @@ if(!today){
          <Header region={region} current={current} today={today} currentWeather={currentWeather} city={city}/>
          <TodaysForecast hourlyForecast={hourlyForecast} today={today} current={current}/>
          <TenDayForecast daily={daily}/>
-         <CovidCases region={region} regionCode={regionCode} />
+         <CovidCases />
          <Details current={current} />
          <DynamicBackground currentWeather={currentWeather}/>
         </div>

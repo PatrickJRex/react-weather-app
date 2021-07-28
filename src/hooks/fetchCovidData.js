@@ -1,16 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { selectLocation } from '../features/locations/locationSlice';
 
 
-export const FetchCovidData = (regionCode) => {
 
+
+
+export const FetchCovidData = () => {
+const stateLocation = useSelector(selectLocation);
 const [covidData, setCovidData ] = useState([]);
 const [isLoading,setIsLoading] = useState(true);
 const [error,setError] = useState(null);
 
 useEffect(() => {
     let isSubscribed = true;
-    let url = `https://api.covidactnow.org/v2/state/${regionCode}.json?apiKey=${process.env.REACT_APP_COVID_DATA_KEY}`;
+    let url = `https://api.covidactnow.org/v2/state/${stateLocation.regionCode}.json?apiKey=${process.env.REACT_APP_COVID_DATA_KEY}`;
     
      
     async function fetchData(){
@@ -34,7 +39,7 @@ useEffect(() => {
     return () => {
     isSubscribed = false;
       }
-}, [regionCode])
+}, [stateLocation.regionCode])
     
 
 return [covidData,isLoading,error];

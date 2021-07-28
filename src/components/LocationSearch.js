@@ -1,9 +1,13 @@
 import React, {useState } from 'react';
 import axios from 'axios';
 import uuid from 'react-uuid';
+import { useDispatch } from 'react-redux';
+import { addlocation } from '../features/locations/locationSlice';
 
 const LocationSearch = ({setSearch}) => {
 
+ 
+    const dispatch = useDispatch();
 
     const [results, setResults] = useState([]);
    
@@ -36,25 +40,31 @@ const LocationSearch = ({setSearch}) => {
 
         axios.get(getDetailsUrl + params)
         .then((data)=>{
-            const locationDetails = data.data.response.view[0].result[0].location;
+         const locationDetails = data.data.response.view[0].result[0].location;
 
-           const searchResult = {
-            city: locationDetails.address.city,
-            key: uuid(),
-            latitude: locationDetails.displayPosition.latitude,
-            longitude: locationDetails.displayPosition.longitude,
-            region: locationDetails.address.state,
-            regionCode: locationDetails.address.additionalData[1].value
-           }
+       
+    
+           dispatch(addlocation({
+            region:locationDetails.address.additionalData[1].value,
+            regionCode:locationDetails.address.state,
+            city:locationDetails.address.city,
+            lat:locationDetails.displayPosition.latitude,
+            lng:locationDetails.displayPosition.longitude,
+            id:uuid()
 
-           let newLocations = [];
-           let currentLocations = JSON.parse(localStorage.getItem('locations')) || [];
-           newLocations.push(searchResult);
-           newLocations.concat(currentLocations);
+          }));
 
-           console.log(newLocations)
+          let newLocalLocale = {
+            region:locationDetails.address.additionalData[1].value,
+            regionCode:locationDetails.address.state,
+            city:locationDetails.address.city,
+            lat:locationDetails.displayPosition.latitude,
+            lng:locationDetails.displayPosition.longitude,
+            id:uuid()
+          }
 
-           localStorage.setItem('locations',JSON.stringify(newLocations));
+          localStorage.setItem('location-data',JSON.stringify(newLocalLocale));
+
 
 
             clearForm();

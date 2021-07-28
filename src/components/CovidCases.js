@@ -1,11 +1,15 @@
 import React from 'react';
 import moment from 'moment';
 import { FetchCovidData } from '../hooks/fetchCovidData';
+import { useSelector } from 'react-redux';
+import { selectLocation } from '../features/locations/locationSlice';
 
-const CovidCases = ({region,regionCode}) => {
+
+const CovidCases = () => {
+  const stateLocation = useSelector(selectLocation);
 
 
-const [covidData,isLoading,error] = FetchCovidData(regionCode);
+const [covidData,isLoading,error] = FetchCovidData();
 
 if(isLoading){
     return (
@@ -33,7 +37,7 @@ return (
 
    
        <h5 className="h5">
-           {region}
+           {stateLocation.region}
        </h5>
        <p>
            Cases for {moment().format("MMMM, DD")}
