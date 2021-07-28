@@ -1,5 +1,6 @@
 import React, {useState } from 'react';
 import axios from 'axios';
+import uuid from 'react-uuid';
 
 const LocationSearch = ({setSearch}) => {
 
@@ -35,16 +36,25 @@ const LocationSearch = ({setSearch}) => {
 
         axios.get(getDetailsUrl + params)
         .then((data)=>{
-            // const locationDetails = data.data.response.view[0].result[0].location;
+            const locationDetails = data.data.response.view[0].result[0].location;
 
-        //    const searchResult = {
-        //     city: locationDetails.address.city,
-        //     key: uuid(),
-        //     latitude: locationDetails.displayPosition.latitude,
-        //     longitude: locationDetails.displayPosition.longitude,
-        //     region: locationDetails.address.state,
-        //     regionCode: locationDetails.address.additionalData[1].value
-        //    }
+           const searchResult = {
+            city: locationDetails.address.city,
+            key: uuid(),
+            latitude: locationDetails.displayPosition.latitude,
+            longitude: locationDetails.displayPosition.longitude,
+            region: locationDetails.address.state,
+            regionCode: locationDetails.address.additionalData[1].value
+           }
+
+           let newLocations = [];
+           let currentLocations = JSON.parse(localStorage.getItem('locations')) || [];
+           newLocations.push(searchResult);
+           newLocations.concat(currentLocations);
+
+           console.log(newLocations)
+
+           localStorage.setItem('locations',JSON.stringify(newLocations));
 
 
             clearForm();
@@ -90,7 +100,7 @@ const LocationSearch = ({setSearch}) => {
     return (
         <div className="LocationSearch">
           <header className="LocationSearch__header">
-          <form className="LocationSearch__form">
+          <form onSubmit={(evt)=>evt.preventDefault()} className="LocationSearch__form">
                 <label>Add a new location</label>
                 <section className="LocationSearch__form__input-area">
                 <div className="input-container">

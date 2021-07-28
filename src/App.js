@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import './assets/weather-icons.min.css';
 import './App.scss';
 import {FetchLocation} from './hooks/fetchLocationData';
 import uuid from 'react-uuid';

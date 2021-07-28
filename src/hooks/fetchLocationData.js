@@ -6,18 +6,22 @@ export const FetchLocation = () => {
 const [region, setRegion] = useState(null);
 const [regionCode, setRegionCode] = useState(null);
 const [city, setCity] = useState(null);
-const locationData = JSON.parse(localStorage.getItem('location-data'));
 const [lat,setLat] = useState(null);
 const [lng,setLng] = useState(null);
 
+// todo refactor these states into a single object 
+const [location,setLocation] = useState({});
 
-const ipDataApi = {
+
+
+useEffect(() => {
+  const locationData = JSON.parse(localStorage.getItem('location-data'));
+
+
+  const ipDataApi = {
     base:"https://api.ipdata.co/",
     key:process.env.REACT_APP_IP_DATA_KEY
   }
-
-useEffect(() => {
-
 
    if(locationData){
       setRegion(locationData.region);
@@ -26,17 +30,13 @@ useEffect(() => {
       setLat(locationData.latitude);
       setLng(locationData.longitude);
 
-      // let location = new Location(locationData.region_code,locationData.region,locationData.city,locationData.latitude,locationData.longitude,uuid());
-      
-    // if(localStorage.getItem('locations')){
-    //     let oldLocations = localStorage.getItem('locations');
-        
-    //     // oldLocations.push(location);
-        
-    //     localStorage.setItem('locations',JSON.stringify(oldLocations));
-         
-    // }
-
+      setLocation({
+        region:locationData.region,
+        regionCode:locationData.region_code,
+        city:locationData.city,
+        lat:locationData.latitude,
+        lng:locationData.longitude
+      })
 
    } else {
 
@@ -55,6 +55,14 @@ useEffect(() => {
           setLat(res.latitude);
           setLng(res.longitude);
 
+          setLocation({
+            region:res.region,
+            regionCode:res.region_code,
+            city:res.city,
+            lat:res.latitude,
+            lng:res.longitude
+          })
+
 
           localStorage.setItem('location-data', JSON.stringify(res));
        
@@ -66,13 +74,7 @@ useEffect(() => {
           
           }
 
-        //   if(localStorage.getItem('locations')){
-        //     let oldLocations = JSON.parse(localStorage.getItem('locations'));
-        //     oldLocations.push(location);
-            
-        //     localStorage.setItem('locations',JSON.stringify(oldLocations));
-             
-        // }
+    
 
         }
         })
@@ -85,8 +87,8 @@ useEffect(() => {
    
 }
 
-}, [ipDataApi,locationData]);
+}, []);
 
-return [region,regionCode,city,lat,lng];
+return [region,regionCode,city,lat,lng,location];
 
 }
